@@ -8,11 +8,24 @@ import PackageDescription
 
 let package = Package(
 	name: "Lua",
+	products: [
+		.library(name: "Lua",
+				 type: .dynamic,
+				 targets: ["Lua"])
+	],
 	dependencies: [
-		.Package(url: "https://github.com/DavidSkrundz/CLua.git", majorVersion: 5, minor: 2),
+		.package(url: "https://github.com/DavidSkrundz/CLua.git", .branch("master")),
+	],
+	targets: [
+		.target(
+			name:"Lua",
+			dependencies: ["CLua"],
+			path:"Sources"
+		)
 	]
 )
 
+/*
 let staticLibrary = Product(
 	name: "Lua",
 	type: .Library(.Static),
@@ -26,3 +39,4 @@ let dynamicLibrary = Product(
 
 products.append(staticLibrary)
 products.append(dynamicLibrary)
+*/
